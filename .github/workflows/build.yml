@@ -12,10 +12,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          path: example-application
+          path: hello_zephyr_example
 
       - name: Initialize
-        working-directory: example-application
+        working-directory: hello_zephyr_example
         run: |
           pip3 install -U west
           west init -l .
@@ -23,7 +23,7 @@ jobs:
           pip3 install -r ../zephyr/scripts/requirements-base.txt
 
       - name: Build firmware
-        working-directory: example-application
+        working-directory: hello_zephyr_example
         run: |
           west build -b custom_plank -s app
 
@@ -31,4 +31,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: firmware
-          path: example-application/build/zephyr/zephyr.*
+          path: hello_zephyr_example/build/zephyr/zephyr.*
